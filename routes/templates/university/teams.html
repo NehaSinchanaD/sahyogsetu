@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Teams | SahyogSetu</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        header {
+            background: #1769d1;
+            color: white;
+            padding: 25px 40px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        header p {
+            margin: 5px 0 0;
+        }
+
+        .container {
+            padding: 35px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            background: #1769d1;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 6px;
+        }
+
+        .nav a:hover {
+            background: #0d4fa5;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .section h2 {
+            margin-top: 0;
+        }
+
+        .team-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .team-card h3 {
+            margin-top: 0;
+            color: #1769d1;
+        }
+
+        .member {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .member:last-child {
+            border-bottom: none;
+        }
+
+        .empty {
+            color: #666;
+            padding: 15px 0;
+        }
+
+        .create-btn {
+            display: inline-block;
+            background: #1769d1;
+            color: white;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>SahyogSetu</h1>
+    <p>University Module</p>
+</header>
+
+<div class="container">
+
+    <h1>University Teams</h1>
+    <p>Create and manage student-faculty project teams.</p>
+
+    <div class="nav">
+        <a href="{{ url_for('university.dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('university.assigned_challenges') }}">Challenges</a>
+        <a href="{{ url_for('university.university_teams') }}">Teams</a>
+        <a href="{{ url_for('university.add_milestone') }}">Milestones</a>
+        <a href="{{ url_for('university.update_progress', project_id=1) }}">Progress</a>
+        <a href="{{ url_for('university.upload_report') }}">Reports</a>
+        <a href="{{ url_for('university.industry_support') }}">Industry Support</a>
+    </div>
+
+    <div class="section">
+        <h2>Student Teams</h2>
+
+        {% if teams %}
+
+            {% for team in teams %}
+
+            <div class="team-card">
+
+                <h3>
+                    {{ team.name }}
+                </h3>
+
+                {% if team.challenge %}
+                    <p>
+                        <strong>Challenge:</strong>
+                        {{ team.challenge }}
+                    </p>
+                {% endif %}
+
+                {% if team.faculty %}
+                    <p>
+                        <strong>Faculty Mentor:</strong>
+                        {{ team.faculty }}
+                    </p>
+                {% endif %}
+
+                <h4>Team Members</h4>
+
+                {% if team.members %}
+
+                    {% for member in team.members %}
+                    <div class="member">
+                        {{ member }}
+                    </div>
+                    {% endfor %}
+
+                {% else %}
+
+                    <p class="empty">No students added yet.</p>
+
+                {% endif %}
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p class="empty">
+                No student teams created yet.
+            </p>
+
+            <a href="#" class="create-btn">
+                Create New Team
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

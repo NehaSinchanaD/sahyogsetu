@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}SahyogSetu{% endblock %}</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fb;
+            color: #222;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1f4fa3, #1769d2);
+            color: white;
+            padding: 25px 40px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 16px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 30px auto;
+        }
+
+        nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            background: #1f4fa3;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 6px;
+        }
+
+        nav a:hover {
+            background: #163d7d;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        button {
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: #1f4fa3;
+            color: white;
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>SahyogSetu</h1>
+        <p>University Module</p>
+    </header>
+
+    <div class="container">
+
+        <nav>
+            <a href="{{ url_for('university.dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('university.assigned_challenges') }}">Challenges</a>
+            <a href="#">Teams</a>
+            <a href="#">Milestones</a>
+            <a href="#">Progress</a>
+            <a href="#">Reports</a>
+            <a href="#">Industry Support</a>
+        </nav>
+
+        {% block content %}
+        {% endblock %}
+
+    </div>
+
+    <footer>
+        <p>© 2026 SahyogSetu</p>
+    </footer>
+
+</body>
+</html>
